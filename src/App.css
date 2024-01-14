@@ -1,38 +1,43 @@
 .App {
+  font-family: sans-serif;
   text-align: center;
+  padding: 100px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.Weather {
+  border: 1px solid rgba(0, 0, 0, 0.284);
+  border-radius: 10px;
+  padding: 50px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.time ul {
+  padding: 0px;
+}
+.time li {
+  list-style-type: none;
+  text-align: start;
+}
+
+.cityName {
+  margin: 10px;
+  margin-left: 0px;}
+
+  .tempDisplay {
+    font-weight: 900;
+    font-size: 48px;
+    text-align: left;
   }
+
+  .units {
+  position: relative;
+  top: -20px;
+  font-size: 18px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.units a {
+  text-decoration: none;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.forecast {
+  font-size: 18px;
 }

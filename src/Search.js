@@ -26,20 +26,86 @@ export default function Search() {
   }
   let form = (
     <form onSubmit={handleSearch}>
-      <input type="search" onChange={updateQuery} />
-      <input type="submit" value="search" />
+      <div className="row">
+        <div className="col-9">
+          <input
+            type="search"
+            placeholder="Type a city.."
+            class="form-control"
+            autocomplete="off"
+            onChange={updateQuery}
+          />
+        </div>
+        <div className="col-3">
+          <input type="submit" class="btn btn-primary w-100" value="Search" />
+        </div>
+      </div>
     </form>
   );
+  let timeData = {
+    date: "Tuesday 19 December",
+    time: "10:00",
+  };
   if (loaded) {
     return (
       <div>
         {form}
-        <div>Temperature: {temperature}°C </div>
-        <div>Humidity: {humidity}%</div>
-        <div>Wind: {wind} km/h </div>
+        <h2 className="text-start cityName">{query}</h2>
+        <div className="time">
+          <ul>
+            <li>
+              Last updated: {timeData.date} at {timeData.time}
+            </li>
+          </ul>
+        </div>
+        <div className="row">
+          <div className="col">
+            <div className="tempDisplay">
+              {temperature}
+              <span className="units">
+                <a href="/">°C</a> | <a href="/">°F</a>
+              </span>
+            </div>
+          </div>
+          <div className="col">
+            <div>Humidity: {humidity}%</div>
+            <div>Wind: {wind} km/h </div>
+          </div>
+        </div>
+        <div className="forecast">
+          <div className="row">
+            <div className="col-2">
+              Wed
+              <div>img</div>
+              <div>4°C</div>
+            </div>
+            <div className="col-2">
+              Thurs <div>img</div>
+              <div>4°C</div>
+            </div>
+            <div className="col-2">
+              Fri <div>img</div>
+              <div>4°C</div>
+            </div>
+            <div className="col-2">
+              Sat <div>img</div>
+              <div>4°C</div>
+            </div>
+            <div className="col-2">
+              Sun <div>img</div>
+              <div>4°C</div>
+            </div>
+            <div className="col-2">
+              Mon <div>img</div>
+              <div>4°C</div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   } else {
-    return <div>{form}</div>;
+    return <div>{form}
+
+    </div>;
   }
 }
