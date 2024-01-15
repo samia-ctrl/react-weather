@@ -6,7 +6,9 @@ function App() {
     <div className="App">
       <Weather />
       <div>
-        <a href="https://jade-kringle-70f393.netlify.app/">Open-sourced code</a>{" "}
+        <a href="https://github.com/samia-ctrl/react-weather">
+          Open-sourced code
+        </a>{" "}
         by
         <a href="https://sensational-axolotl-763769.netlify.app/">Samia Ali</a>
       </div>
