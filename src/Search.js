@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 export default function Search() {
   let [query, setQuery] = useState("");
@@ -6,6 +6,10 @@ export default function Search() {
   let [humidity, setHumidity] = useState("");
   let [wind, setWind] = useState("");
   let [loaded, setLoaded] = useState(false);
+  let [defCity, setDefCity] = useState("");
+  let [defTemperature, setDefTemperature] = useState("");
+  let [defHumidity, setDefHumidity] = useState("");
+  let [defWind, setDefWind] = useState("");
 
   function showTemp(response) {
     setLoaded(true);
@@ -19,12 +23,37 @@ export default function Search() {
     let apiKey = `535cacbb3f8a0df0aeb4790235b9541f`;
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric`;
     axios.get(url).then(showTemp);
-console.log(url)
   }
 
   function updateQuery(event) {
     setQuery(event.target.value);
   }
+
+  useEffect(() => {
+    function fetchDefaultWeather() {
+      let apiKey = `535cacbb3f8a0df0aeb4790235b9541f`;
+      let defUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${apiKey}&units=metric`;
+
+      axios
+        .get(defUrl)
+        .then((response) => {
+          showDefTemp(response);
+        })
+        .catch((error) => {
+          console.error("Error fetching default weather data:", error);
+        });
+    }
+
+    fetchDefaultWeather();
+  }, []);
+
+  function showDefTemp(response) {
+    setDefTemperature(Math.round(response.data.main.temp));
+    setDefCity(response.data.name);
+    setDefHumidity(response.data.main.humidity);
+    setDefWind(response.data.wind.speed);
+  }
+
   let form = (
     <form onSubmit={handleSearch}>
       <div className="row">
@@ -32,20 +61,22 @@ console.log(url)
           <input
             type="search"
             placeholder="Type a city.."
-            class="form-control"
-            autocomplete="off"
+            className="form-control"
+            autoComplete="off"
             onChange={updateQuery}
           />
         </div>
         <div className="col-3">
-          <input type="submit" class="btn btn-primary w-100" value="Search" />
+          <input
+            type="submit"
+            className="btn btn-primary w-100"
+            value="Search"
+          />
         </div>
       </div>
     </form>
   );
 
-  let defCity = "London"
-  let defTemperature = 1
   let timeData = {
     date: "Tuesday 19 December",
     time: "10:00",
@@ -129,8 +160,8 @@ console.log(url)
             </div>
           </div>
           <div className="col">
-            <div>Humidity: %</div>
-            <div>Wind: km/h </div>
+            <div>Humidity: {defHumidity}%</div>
+            <div>Wind: {defWind} km/h </div>
           </div>
         </div>
 
