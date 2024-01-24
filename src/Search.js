@@ -56,7 +56,6 @@ export default function Search() {
     setDefCity(response.data.name);
     setDefHumidity(response.data.main.humidity);
     setDefWind(response.data.wind.speed);
-    setTimeData(new Date(response.data.dt * 1000));
   }
 
   let form = (
