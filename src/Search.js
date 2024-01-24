@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import FormattedDate from "./FormattedDate";
+
 export default function Search() {
   let [query, setQuery] = useState("");
   let [temperature, setTemperature] = useState("");
@@ -10,12 +12,14 @@ export default function Search() {
   let [defTemperature, setDefTemperature] = useState("");
   let [defHumidity, setDefHumidity] = useState("");
   let [defWind, setDefWind] = useState("");
-
+  let [timeData, setTimeData] = useState("");
   function showTemp(response) {
     setLoaded(true);
     setTemperature(response.data.main.temp);
     setHumidity(response.data.main.humidity);
     setWind(response.data.wind.speed);
+    setTimeData(new Date(response.data.dt * 1000));
+    console.log(timeData);
   }
 
   function handleSearch(event) {
@@ -36,10 +40,10 @@ export default function Search() {
 
       axios
         .get(defUrl)
-        .then((response) => {
+        .then(function (response) {
           showDefTemp(response);
         })
-        .catch((error) => {
+        .catch(function (error) {
           console.error("Error fetching default weather data:", error);
         });
     }
@@ -52,6 +56,7 @@ export default function Search() {
     setDefCity(response.data.name);
     setDefHumidity(response.data.main.humidity);
     setDefWind(response.data.wind.speed);
+    setTimeData(new Date(response.data.dt * 1000));
   }
 
   let form = (
@@ -77,10 +82,6 @@ export default function Search() {
     </form>
   );
 
-  let timeData = {
-    date: "Tuesday 19 December",
-    time: "10:00",
-  };
   if (loaded) {
     return (
       <div>
@@ -89,7 +90,7 @@ export default function Search() {
         <div className="time">
           <ul>
             <li>
-              Last updated: {timeData.date} at {timeData.time}
+              <FormattedDate date={timeData} />
             </li>
           </ul>
         </div>
@@ -144,11 +145,6 @@ export default function Search() {
         {form}
         <h2 className="text-start cityName">{defCity}</h2>
         <div className="time">
-          <ul>
-            <li>
-              Last updated: {timeData.date} at {timeData.time}
-            </li>
-          </ul>
         </div>
         <div className="row">
           <div className="col">
