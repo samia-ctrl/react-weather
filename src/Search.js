@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import DefWeather from "./DefWeather";
@@ -29,8 +29,6 @@ export default function Search() {
   function updateQuery(event) {
     setQuery(event.target.value);
   }
-
-
 
   let form = (
     <form onSubmit={handleSearch}>
