@@ -8,6 +8,9 @@
   border: 1px solid rgba(0, 0, 0, 0.284);
   border-radius: 10px;
   padding: 50px;
+  max-width: 600px;
+  display: block;
+  margin: 0 auto;
 }
 
 .time ul {
@@ -20,15 +23,16 @@
 
 .cityName {
   margin: 10px;
-  margin-left: 0px;}
+  margin-left: 0px;
+}
 
-  .tempDisplay {
-    font-weight: 900;
-    font-size: 48px;
-    text-align: left;
-  }
+.tempDisplay {
+  font-weight: 900;
+  font-size: 48px;
+  text-align: left;
+}
 
-  .units {
+.units {
   position: relative;
   top: -20px;
   font-size: 18px;
