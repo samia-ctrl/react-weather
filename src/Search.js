@@ -69,14 +69,14 @@ export default function Search() {
             <img src={weatherData.iconUrl} />
           </div>
           <div className="col-5">
-            <div className="tempDisplay">
+            <div className="tempDisplay mt-3">
               {Math.round(weatherData.temperature)}
               <span className="units">
                 <a href="/">°C</a> | <a href="/">°F</a>
               </span>
             </div>
           </div>
-          <div className="col-4">
+          <div className="col-4 mt-4">
             <div>Humidity: {weatherData.humidity}%</div>
             <div>Wind: {weatherData.wind} km/h </div>
           </div>
@@ -85,27 +85,32 @@ export default function Search() {
           <div className="row">
             <div className="col-2">
               Wed
-              <div>img</div>
+              <img className="img-fluid " src={weatherData.iconUrl} />
               <div>4°C</div>
             </div>
             <div className="col-2">
-              Thurs <div>img</div>
+              Thurs
+              <img className="img-fluid " src={weatherData.iconUrl} />
               <div>4°C</div>
             </div>
             <div className="col-2">
-              Fri <div>img</div>
+              Fri
+              <img className="img-fluid " src={weatherData.iconUrl} />
               <div>4°C</div>
             </div>
             <div className="col-2">
-              Sat <div>img</div>
+              Sat
+              <img className="img-fluid " src={weatherData.iconUrl} />
               <div>4°C</div>
             </div>
             <div className="col-2">
-              Sun <div>img</div>
+              Sun
+              <img className="img-fluid " src={weatherData.iconUrl} />
               <div>4°C</div>
             </div>
             <div className="col-2">
-              Mon <div>img</div>
+              Mon
+              <img className="img-fluid " src={weatherData.iconUrl} />
               <div>4°C</div>
             </div>
           </div>
