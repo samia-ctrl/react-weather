@@ -4,19 +4,18 @@ import FormattedDate from "./FormattedDate";
 import DefWeather from "./DefWeather";
 
 export default function Search() {
-  let [query, setQuery] = useState("");
-  let [temperature, setTemperature] = useState("");
-  let [humidity, setHumidity] = useState("");
-  let [wind, setWind] = useState("");
-  let [loaded, setLoaded] = useState(false);
-  let [timeData, setTimeData] = useState("");
+  let [weatherData, setWeatherData] = useState( {loaded: false});
+  let [query, setQuery] = useState("")
+
   function showTemp(response) {
-    setLoaded(true);
-    setTemperature(response.data.main.temp);
-    setHumidity(response.data.main.humidity);
-    setWind(response.data.wind.speed);
-    setTimeData(new Date(response.data.dt * 1000));
-    console.log(timeData);
+    setWeatherData({
+      loaded: true,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      wind: response.data.wind.speed,
+      timeData: new Date(response.data.dt * 1000),
+      iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+    });
   }
 
   function handleSearch(event) {
@@ -53,7 +52,7 @@ export default function Search() {
     </form>
   );
 
-  if (loaded) {
+  if (weatherData.loaded) {
     return (
       <div>
         {form}
@@ -61,22 +60,25 @@ export default function Search() {
         <div className="time">
           <ul>
             <li>
-              <FormattedDate date={timeData} />
+              <FormattedDate date={weatherData.timeData} />
             </li>
           </ul>
         </div>
         <div className="row">
-          <div className="col">
+          <div className="col-3">
+            <img src={weatherData.iconUrl} />
+          </div>
+          <div className="col-5">
             <div className="tempDisplay">
-              {Math.round(temperature)}
+              {Math.round(weatherData.temperature)}
               <span className="units">
                 <a href="/">°C</a> | <a href="/">°F</a>
               </span>
             </div>
           </div>
-          <div className="col">
-            <div>Humidity: {humidity}%</div>
-            <div>Wind: {wind} km/h </div>
+          <div className="col-4">
+            <div>Humidity: {weatherData.humidity}%</div>
+            <div>Wind: {weatherData.wind} km/h </div>
           </div>
         </div>
         <div className="forecast">

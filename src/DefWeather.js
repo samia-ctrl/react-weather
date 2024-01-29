@@ -6,6 +6,8 @@ export default function DefWeather() {
   let [defTemperature, setDefTemperature] = useState("");
   let [defHumidity, setDefHumidity] = useState("");
   let [defWind, setDefWind] = useState("");
+  let [defIconUrl, setDefIconUrl] = useState(null)
+  let [defWeatherData,setDefWeatherData] = useState("")
 
   useEffect(() => {
     function fetchDefaultWeather() {
@@ -26,26 +28,31 @@ export default function DefWeather() {
   }, []);
 
   function showDefTemp(response) {
-    setDefTemperature(Math.round(response.data.main.temp));
-    setDefCity(response.data.name);
-    setDefHumidity(response.data.main.humidity);
-    setDefWind(response.data.wind.speed);
-  }
+    setDefWeatherData(
+    {defTemperature: Math.round(response.data.main.temp),
+    defCity:response.data.name,
+    defHumidity:response.data.main.humidity,
+    defWind:response.data.wind.speed,
+    defIconUrl:`https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`}
+  )}
   return (
     <div>
-      <h2 className="text-start cityName">{defCity}</h2>
+      <h2 className="text-start cityName">{defWeatherData.defCity}</h2>
       <div className="row">
-        <div className="col">
-          <div className="tempDisplay">
-            {defTemperature}
+        <div className="col-3 mt-0">
+          <img src={defWeatherData.defIconUrl} />
+        </div>
+        <div className="col-5">
+          <div className="tempDisplay mt-3">
+            {defWeatherData.defTemperature}
             <span className="units">
               <a href="/">°C</a> | <a href="/">°F</a>
             </span>
           </div>
         </div>
-        <div className="col">
-          <div>Humidity: {defHumidity}%</div>
-          <div>Wind: {defWind} km/h </div>
+        <div className="col-4">
+          <div>Humidity: {defWeatherData.defHumidity}%</div>
+          <div>Wind: {defWeatherData.defWind} km/h </div>
         </div>
       </div>
 
