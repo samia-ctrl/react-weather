@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import DefWeatherTemperature from "./DefWeatherTemperature";
 
 export default function DefWeather() {
   let [defWeatherData, setDefWeatherData] = useState("");
@@ -40,7 +41,8 @@ export default function DefWeather() {
         </div>
         <div className="col-5">
           <div className="tempDisplay mt-3">
-            {defWeatherData.defTemperature}
+          <DefWeatherTemperature temp={defWeatherData.defTemperature}/>
+            
             <span className="units">
               <a href="/">°C</a> | <a href="/">°F</a>
             </span>

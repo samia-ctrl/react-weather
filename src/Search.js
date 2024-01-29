@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import DefWeather from "./DefWeather";
+import SearchWeatherTemperature from "./SearchWeatherTemperature";
 
 export default function Search() {
   let [weatherData, setWeatherData] = useState( {loaded: false});
@@ -70,10 +71,9 @@ export default function Search() {
           </div>
           <div className="col-5">
             <div className="tempDisplay mt-3">
-              {Math.round(weatherData.temperature)}
-              <span className="units">
-                <a href="/">°C</a> | <a href="/">°F</a>
-              </span>
+            <SearchWeatherTemperature temp={Math.round(weatherData.temperature)}/>
+              
+
             </div>
           </div>
           <div className="col-4 mt-4">
