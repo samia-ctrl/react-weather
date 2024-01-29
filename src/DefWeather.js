@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import DefWeatherTemperature from "./DefWeatherTemperature";
-
+import Forecast from "./Forecast";
 export default function DefWeather() {
   let [defWeatherData, setDefWeatherData] = useState("");
 
@@ -30,7 +30,10 @@ export default function DefWeather() {
       defHumidity: response.data.main.humidity,
       defWind: response.data.wind.speed,
       defIconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
+      latCoord: response.data.coord.lat,
+      lonCoord: response.data.coord.lon,
     });
+    console.log(response.data.coord.lat);
   }
   return (
     <div>
@@ -41,11 +44,7 @@ export default function DefWeather() {
         </div>
         <div className="col-5">
           <div className="tempDisplay mt-3">
-          <DefWeatherTemperature temp={defWeatherData.defTemperature}/>
-            
-            <span className="units">
-              <a href="/">°C</a> | <a href="/">°F</a>
-            </span>
+            <DefWeatherTemperature temp={defWeatherData.defTemperature} />
           </div>
         </div>
         <div className="col-4 mt-4">
@@ -54,35 +53,11 @@ export default function DefWeather() {
         </div>
       </div>
 
-      <div className="forecast">
-        <div className="row">
-          <div className="col-2">
-            Wed
-            <img className="img-fluid " src={defWeatherData.defIconUrl} />
-            <div>4°C</div>
-          </div>
-          <div className="col-2">
-            Thurs <img className="img-fluid " src={defWeatherData.defIconUrl} />
-            <div>4°C</div>
-          </div>
-          <div className="col-2">
-            Fri <img className="img-fluid " src={defWeatherData.defIconUrl} />
-            <div>4°C</div>
-          </div>
-          <div className="col-2">
-            Sat <img className="img-fluid " src={defWeatherData.defIconUrl} />
-            <div>4°C</div>
-          </div>
-          <div className="col-2">
-            Sun <img className="img-fluid " src={defWeatherData.defIconUrl} />
-            <div>4°C</div>
-          </div>
-          <div className="col-2">
-            Mon <img className="img-fluid " src={defWeatherData.defIconUrl} />
-            <div>4°C</div>
-          </div>
-        </div>
-      </div>
+      <Forecast
+        coordinates={defWeatherData.latCoord}
+        lonCoordinates={defWeatherData.lonCoord}
+        icon={defWeatherData.defIconUrl}
+      />
     </div>
   );
 }
