@@ -7,7 +7,7 @@ export default function DefWeather() {
 
   useEffect(() => {
     function fetchDefaultWeather() {
-      let apiKey = `15b6ba0523386a8a73b38b2440a74dea`;
+      let apiKey = `535cacbb3f8a0df0aeb4790235b9541f`;
       let defUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${apiKey}&units=metric`;
 
       axios
