@@ -40,7 +40,7 @@ export default function DefWeather() {
       <h2 className="text-start cityName">{defWeatherData.defCity}</h2>
       <div className="row">
         <div className="col-3 mt-0">
-          <img src={defWeatherData.defIconUrl} />
+          <img src={defWeatherData.defIconUrl} alt="default-weather" />
         </div>
         <div className="col-5">
           <div className="tempDisplay mt-3">

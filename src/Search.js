@@ -5,8 +5,8 @@ import DefWeather from "./DefWeather";
 import SearchWeatherTemperature from "./SearchWeatherTemperature";
 
 export default function Search() {
-  let [weatherData, setWeatherData] = useState( {loaded: false});
-  let [query, setQuery] = useState("")
+  let [weatherData, setWeatherData] = useState({ loaded: false });
+  let [query, setQuery] = useState("");
 
   function showTemp(response) {
     setWeatherData({
@@ -67,13 +67,13 @@ export default function Search() {
         </div>
         <div className="row">
           <div className="col-3">
-            <img src={weatherData.iconUrl} />
+            <img className="img-fluid" src={weatherData.iconUrl} alt="weather" />
           </div>
           <div className="col-5">
             <div className="tempDisplay mt-3">
-            <SearchWeatherTemperature temp={Math.round(weatherData.temperature)}/>
-              
-
+              <SearchWeatherTemperature
+                temp={Math.round(weatherData.temperature)}
+              />
             </div>
           </div>
           <div className="col-4 mt-4">
@@ -85,32 +85,56 @@ export default function Search() {
           <div className="row">
             <div className="col-2">
               Wed
-              <img className="img-fluid " src={weatherData.iconUrl} />
+              <img
+                className="img-fluid "
+                src={weatherData.iconUrl}
+                alt="forecast-weather"
+              />
               <div>4°C</div>
             </div>
             <div className="col-2">
               Thurs
-              <img className="img-fluid " src={weatherData.iconUrl} />
+              <img
+                className="img-fluid "
+                src={weatherData.iconUrl}
+                alt="forecast-weather"
+              />
               <div>4°C</div>
             </div>
             <div className="col-2">
               Fri
-              <img className="img-fluid " src={weatherData.iconUrl} />
+              <img
+                className="img-fluid "
+                src={weatherData.iconUrl}
+                alt="forecast-weather"
+              />
               <div>4°C</div>
             </div>
             <div className="col-2">
               Sat
-              <img className="img-fluid " src={weatherData.iconUrl} />
+              <img
+                className="img-fluid "
+                src={weatherData.iconUrl}
+                alt="forecast-weather"
+              />
               <div>4°C</div>
             </div>
             <div className="col-2">
               Sun
-              <img className="img-fluid " src={weatherData.iconUrl} />
+              <img
+                className="img-fluid "
+                src={weatherData.iconUrl}
+                alt="forecast-weather"
+              />
               <div>4°C</div>
             </div>
             <div className="col-2">
               Mon
-              <img className="img-fluid " src={weatherData.iconUrl} />
+              <img
+                className="img-fluid "
+                src={weatherData.iconUrl}
+                alt="forecast-weather"
+              />
               <div>4°C</div>
             </div>
           </div>
