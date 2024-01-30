@@ -7,7 +7,7 @@ export default function DefWeather() {
 
   useEffect(() => {
     function fetchDefaultWeather() {
-      let apiKey = `535cacbb3f8a0df0aeb4790235b9541f`;
+      let apiKey = `15b6ba0523386a8a73b38b2440a74dea`;
       let defUrl = `https://api.openweathermap.org/data/2.5/weather?q=london&appid=${apiKey}&units=metric`;
 
       axios
@@ -30,10 +30,8 @@ export default function DefWeather() {
       defHumidity: response.data.main.humidity,
       defWind: response.data.wind.speed,
       defIconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
-      latCoord: response.data.coord.lat,
-      lonCoord: response.data.coord.lon,
+      coord: response.data.coord,
     });
-    console.log(response.data.coord.lat);
   }
   return (
     <div>
@@ -54,8 +52,7 @@ export default function DefWeather() {
       </div>
 
       <Forecast
-        coordinates={defWeatherData.latCoord}
-        lonCoordinates={defWeatherData.lonCoord}
+        coordinates={defWeatherData.coord}
         icon={defWeatherData.defIconUrl}
       />
     </div>

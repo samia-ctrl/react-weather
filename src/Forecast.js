@@ -6,17 +6,19 @@ export default function Forecast(props) {
   function handleResponse(response) {
     console.log(response.data);
   }
-  console.log(props.coordinates);
-  let apiKey = `535cacbb3f8a0df0aeb4790235b9541f`;
-  let longitude = props.lonCoordinates;
-  let latitude = props.coordinates;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&cnt=6&appid=${apiKey}`;
+  let apiKey = `15b6ba0523386a8a73b38b2440a74dea`;
+  let longitude = props.coordinates?.lon;
+  let latitude = props.coordinates?.lat;
+
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&limit=5&cnt=6&appid=${apiKey}&units=metric`;
+
   axios
     .get(apiUrl)
     .then(handleResponse)
     .catch((error) => {
       console.error("Error fetching data:", error);
     });
+    
   return (
     <div className="Forecast">
       <div className="row">
