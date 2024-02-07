@@ -28,7 +28,7 @@ export default function Forecast(props) {
             alt="forecast"
           />
           <div className="forecast-max-temp">
-            14°{" "}
+            {forecast[0].temp.max}°{" "}
             <span className="forecast-min-temp">4°</span>
           </div>
         </div>
