@@ -16,8 +16,10 @@ export default function Search() {
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
       timeData: new Date(response.data.dt * 1000),
+      coords: response.data.coord,
       iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
+    console.log(response.data.coord);
   }
 
   function handleSearch(event) {
@@ -68,7 +70,11 @@ export default function Search() {
         </div>
         <div className="row">
           <div className="col-3">
-            <img className="img-fluid" src={weatherData.iconUrl} alt="weather" />
+            <img
+              className="img-fluid"
+              src={weatherData.iconUrl}
+              alt="weather"
+            />
           </div>
           <div className="col-5">
             <div className="tempDisplay mt-3">
@@ -81,6 +87,13 @@ export default function Search() {
             <div>Humidity: {weatherData.humidity}%</div>
             <div>Wind: {weatherData.wind} km/h </div>
           </div>
+        </div>
+        <div>
+          {weatherData.coords && (
+            <div>
+              <Forecast data={weatherData.coords} />
+            </div>
+          )}
         </div>
       </div>
     );
