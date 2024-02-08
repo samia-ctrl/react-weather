@@ -19,12 +19,11 @@ export default function Search() {
       coords: response.data.coord,
       iconUrl: `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`,
     });
-    console.log(response.data.coord);
   }
 
   function handleSearch(event) {
     event.preventDefault();
-    let apiKey = `535cacbb3f8a0df0aeb4790235b9541f`;
+    let apiKey = `aa09763d916df0424c840d55bfc2d2c9`;
     let url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric`;
     axios.get(url).then(showTemp);
   }
