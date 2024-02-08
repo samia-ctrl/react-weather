@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Forecast.css";
 import axios from "axios";
+import ForecastDay from "./ForecastDay";
 
 export default function Forecast(props) {
   let [forecast, setForecast] = useState("");
@@ -12,27 +13,32 @@ export default function Forecast(props) {
   if (props.coordinates === undefined) {
     return null;
   }
-  let longitude = props.coordinates?.lon;
-  let latitude = props.coordinates?.lat;
-  let apiKey = `535cacbb3f8a0df0aeb4790235b9541f`;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(handleResponse);
-  return (
-    <div className="Forecast">
-      <div className="row">
-        <div className="col">
-          <div className="forecast-day">Wed</div>
-          <img
-            className="img-fluid forecast-icon "
-            src={props.icon}
-            alt="forecast"
-          />
-          <div className="forecast-max-temp">
-            {forecast[0].temp.max}°{" "}
-            <span className="forecast-min-temp">4°</span>
-          </div>
+
+  if (!forecast) {
+    let longitude = props.coordinates?.lon;
+    let latitude = props.coordinates?.lat;
+    let apiKey = `99b8f9330a1bfba3a85e523fd3c2e528`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`;
+    axios.get(apiUrl).then(handleResponse);
+    return null;
+  } else {
+    return (
+      <div className="Forecast">
+        <div className="row">
+          {forecast.map(function (dailyForecast, index) {
+            if (index < 5 ) {
+            return (
+              <div className="col" key= {index}>
+                <ForecastDay
+                  data={dailyForecast}
+                  icon={`https://openweathermap.org/img/wn/${dailyForecast.weather[0].icon}@2x.png`}
+                />
+              </div>
+            );}
+          })}
+          
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }

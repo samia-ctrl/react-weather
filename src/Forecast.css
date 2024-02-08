@@ -1,3 +1,7 @@
 .forecast-min-temp {
 opacity: 0.6;
 margin-left: 5px;}
+
+.forecast-min-temp, .forecast-max-temp {
+    font-size: 14px ;
+}

@@ -3,6 +3,7 @@ import axios from "axios";
 import FormattedDate from "./FormattedDate";
 import DefWeather from "./DefWeather";
 import SearchWeatherTemperature from "./SearchWeatherTemperature";
+import Forecast from "./Forecast";
 
 export default function Search() {
   let [weatherData, setWeatherData] = useState({ loaded: false });
@@ -79,64 +80,6 @@ export default function Search() {
           <div className="col-4 mt-4">
             <div>Humidity: {weatherData.humidity}%</div>
             <div>Wind: {weatherData.wind} km/h </div>
-          </div>
-        </div>
-        <div className="forecast">
-          <div className="row">
-            <div className="col-2">
-              Wed
-              <img
-                className="img-fluid "
-                src={weatherData.iconUrl}
-                alt="forecast-weather"
-              />
-              <div>4°C</div>
-            </div>
-            <div className="col-2">
-              Thurs
-              <img
-                className="img-fluid "
-                src={weatherData.iconUrl}
-                alt="forecast-weather"
-              />
-              <div>4°C</div>
-            </div>
-            <div className="col-2">
-              Fri
-              <img
-                className="img-fluid "
-                src={weatherData.iconUrl}
-                alt="forecast-weather"
-              />
-              <div>4°C</div>
-            </div>
-            <div className="col-2">
-              Sat
-              <img
-                className="img-fluid "
-                src={weatherData.iconUrl}
-                alt="forecast-weather"
-              />
-              <div>4°C</div>
-            </div>
-            <div className="col-2">
-              Sun
-              <img
-                className="img-fluid "
-                src={weatherData.iconUrl}
-                alt="forecast-weather"
-              />
-              <div>4°C</div>
-            </div>
-            <div className="col-2">
-              Mon
-              <img
-                className="img-fluid "
-                src={weatherData.iconUrl}
-                alt="forecast-weather"
-              />
-              <div>4°C</div>
-            </div>
           </div>
         </div>
       </div>
