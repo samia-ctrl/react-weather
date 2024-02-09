@@ -9,8 +9,7 @@ function App() {
         <a href="https://github.com/samia-ctrl/react-weather">
           Open-sourced code
         </a>{" "}
-        by{" "}
-        <a href="https://sensational-axolotl-763769.netlify.app/">Samia Ali</a>
+        by <a href="https://samia-ali.com/">Samia Ali</a>
       </div>
     </div>
   );
