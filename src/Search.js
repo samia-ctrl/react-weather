@@ -39,7 +39,7 @@ export default function Search(props) {
   let form = (
     <form onSubmit={handleSearch}>
       <div className="row">
-        <div className="col-9">
+        <div className="col-9 search-bar">
           <input
             type="search"
             placeholder="Type a city.."
@@ -48,7 +48,7 @@ export default function Search(props) {
             onChange={updateQuery}
           />
         </div>
-        <div className="col-3">
+        <div className="col-3 search-button">
           <input
             type="submit"
             className="btn btn-primary w-100"
@@ -74,7 +74,7 @@ export default function Search(props) {
         <div className="row">
           <div className="col-3">
             <img
-              className="img-fluid"
+              className="img-fluid currentIcon"
               src={weatherData.iconUrl}
               alt="weather"
             />

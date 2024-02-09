@@ -45,3 +45,38 @@
 .forecast {
   font-size: 18px;
 }
+
+@media (max-width: 680px) {
+  .Weather {
+    padding: 25px;
+    font-size: smaller;
+  }
+}
+
+@media (max-width: 624px) {
+  .App {
+    padding: 40px;
+  }
+  .Weather {
+    font-size: 10px;
+  }
+  .search-bar {
+    width: 60%;
+  }
+
+  .search-button {
+    width: 40%;
+  }
+
+  .tempDisplay {
+    font-size: 36px;
+  }
+
+  .units {
+    font-size: 12px;
+  }
+
+  .currentIcon {
+    margin-top: 20px;
+  }
+}
