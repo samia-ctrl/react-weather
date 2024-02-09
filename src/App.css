@@ -57,7 +57,11 @@
   .App {
     padding: 40px;
   }
-  .Weather {
+
+}
+
+@media (max-width: 486px) {
+    .Weather {
     font-size: 10px;
   }
   .search-bar {
