@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import axios from "axios";
 import FormattedDate from "./FormattedDate";
-import DefWeather from "./DefWeather";
 import SearchWeatherTemperature from "./SearchWeatherTemperature";
 import Forecast from "./Forecast";
 
-export default function Search() {
+export default function Search(props) {
   let [weatherData, setWeatherData] = useState({ loaded: false });
-  let [query, setQuery] = useState("");
+  let [query, setQuery] = useState(props.defaultCity);
 
   function showTemp(response) {
     setWeatherData({
       loaded: true,
+      city: response.data.name,
       temperature: response.data.main.temp,
       humidity: response.data.main.humidity,
       wind: response.data.wind.speed,
@@ -23,13 +23,17 @@ export default function Search() {
 
   function handleSearch(event) {
     event.preventDefault();
-    let apiKey = `aa09763d916df0424c840d55bfc2d2c9`;
-    let url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric`;
-    axios.get(url).then(showTemp);
+    getWeather();
   }
 
   function updateQuery(event) {
     setQuery(event.target.value);
+  }
+
+  function getWeather() {
+    let apiKey = `3f6be1c407b0d9d1933561808db358ba`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${query}&appid=${apiKey}&units=metric`;
+    axios.get(url).then(showTemp);
   }
 
   let form = (
@@ -59,7 +63,7 @@ export default function Search() {
     return (
       <div>
         {form}
-        <h2 className="text-start cityName">{query}</h2>
+        <h2 className="text-start cityName">{weatherData.city}</h2>
         <div className="time">
           <ul>
             <li>
@@ -88,20 +92,12 @@ export default function Search() {
           </div>
         </div>
         <div>
-          {weatherData.coords && (
-            <div>
-              <Forecast data={weatherData.coords} />
-            </div>
-          )}
+          <Forecast coordinates={weatherData.coords} />
         </div>
       </div>
     );
   } else {
-    return (
-      <div>
-        {form}
-        <DefWeather />
-      </div>
-    );
+    getWeather();
+    return "Loading...";
   }
 }
